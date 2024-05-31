@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-logo {
@@ -35,4 +40,92 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.chess-board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  border: 2px solid black;
+  width: 400px;
+  height: 400px;
+  padding: 10px;
+}
+
+.chess-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.blue {
+  background-color: lightblue;
+}
+
+.red {
+  background-color: lightcoral;
+}
+
+.chess-piece {
+  position: absolute;
+  /* width: 60px;
+  height: 60px; */
+  border-radius: 50%;
+  font-size: 65px;
+  display: inline-block;
+  line-height: 1;
+}
+
+.chess-piece.dragging {
+  transform: scale(1.2);
+}
+
+.outer-square {
+  width: 800px;
+  height: 800px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-square {
+  width: 90%;
+  height: 90%;
+  border: 2px solid black;
+  display: inline-block;
+  /* grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr); */
+  /* margin-bottom: -10%; */
+}
+
+.small-square {
+  /* position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid; */
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.light {
+  background-color: white;
+}
+
+.dark {
+  background-color: rgb(221, 221, 221);
+}
+
+.grid-board {
+  border: 1px solid black;
+}
+
+.row {
+  display: flex;
 }
