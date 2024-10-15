@@ -65,11 +65,92 @@ export const KingRules = (chessPiece, oldPosition, board) => {
   return placeCanMove;
 };
 
-export const QueenRules = (chessPiece, oldPosition, board) => {};
+export const QueenRules = (chessPiece, oldPosition, board) => {
+  return RookRules(chessPiece, oldPosition, board).concat(
+    BishopRules(chessPiece, oldPosition, board)
+  );
+};
 
-export const BishopRules = (chessPiece, oldPosition, board) => {};
+export const BishopRules = (chessPiece, oldPosition, board) => {
+  let placeCanMove = [];
+  const currentBishop = board[oldPosition[0]][oldPosition[1]];
 
-export const KnightRules = (chessPiece, oldPosition, board) => {};
+  for (
+    let i = oldPosition[0] + 1, j = oldPosition[1] + 1;
+    i < 8 && j < 8;
+    i++, j++
+  ) {
+    if (board[i][j].piece === "") placeCanMove.push([i, j]);
+    if (board[i][j].piece !== "") {
+      if (currentBishop.color !== board[i][j].color) placeCanMove.push([i, j]);
+      break;
+    }
+  }
+
+  for (
+    let i = oldPosition[0] + 1, j = oldPosition[1] - 1;
+    i < 8 && j >= 0;
+    i++, j--
+  ) {
+    if (board[i][j].piece === "") placeCanMove.push([i, j]);
+    if (board[i][j].piece !== "") {
+      if (currentBishop.color !== board[i][j].color) placeCanMove.push([i, j]);
+      break;
+    }
+  }
+  for (
+    let i = oldPosition[0] - 1, j = oldPosition[1] + 1;
+    i >= 0 && j < 8;
+    i--, j++
+  ) {
+    if (board[i][j].piece === "") placeCanMove.push([i, j]);
+    if (board[i][j].piece !== "") {
+      if (currentBishop.color !== board[i][j].color) placeCanMove.push([i, j]);
+      break;
+    }
+  }
+  for (
+    let i = oldPosition[0] - 1, j = oldPosition[1] - 1;
+    i >= 0 && j >= 0;
+    i--, j--
+  ) {
+    if (board[i][j].piece === "") placeCanMove.push([i, j]);
+    if (board[i][j].piece !== "") {
+      if (currentBishop.color !== board[i][j].color) placeCanMove.push([i, j]);
+      break;
+    }
+  }
+
+  return placeCanMove;
+};
+
+export const KnightRules = (chessPiece, oldPosition, board) => {
+  let placeCanMove = [];
+  const currentKnight = board[oldPosition[0]][oldPosition[1]];
+  const possibleMoves = [
+    [oldPosition[0] + 2, oldPosition[1] - 1],
+    [oldPosition[0] + 2, oldPosition[1] + 1],
+    [oldPosition[0] - 2, oldPosition[1] - 1],
+    [oldPosition[0] - 2, oldPosition[1] + 1],
+    [oldPosition[0] + 1, oldPosition[1] + 2],
+    [oldPosition[0] + 1, oldPosition[1] - 2],
+    [oldPosition[0] - 1, oldPosition[1] + 2],
+    [oldPosition[0] - 1, oldPosition[1] - 2],
+  ];
+
+  possibleMoves.forEach(function(move) {
+    if(move[0] >=0 && move[0]<8 && move[1]>=0 && move[1]<8){
+      if (board[move[0]][move[1]].piece === "")
+        placeCanMove.push(move);
+      else {
+        if (currentKnight.color !== board[move[0]][move[1]].color)
+          placeCanMove.push(move);
+      }
+    }
+  })
+
+  return placeCanMove;
+};
 
 export const RookRules = (chessPiece, oldPosition, board) => {
   let placeCanMove = [];

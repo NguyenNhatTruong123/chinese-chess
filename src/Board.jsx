@@ -17,7 +17,7 @@ import {
   RULES,
 } from "./piece";
 
-const Board = () => {
+export const Board = () => {
   // const [board, setBoard] = useState([
   //   { piece: "車", color: "blue"},
   //   { piece: "馬", color: "blue"},
